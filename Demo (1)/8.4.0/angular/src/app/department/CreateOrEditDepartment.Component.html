@@ -1,0 +1,29 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form  #officeForm="ngForm" novalidate  autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="department.id">{{l("EditDepartment")}}</span>
+                        <span *ngIf="!department.id">{{l("CreateNewDepartment")}}</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="my-3">
+                        <label class="form-label" for="Department">{{l("DepartMent")}} *</label>
+                        <input type="text" #Department="ngModel" id="Department" class="form-control" [(ngModel)]="department.name" name="name"   minlength="0"  maxlength="50"  required/>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()"
+                        >{{l("Cancel")}}</button>
+                    <button  class="btn btn-primary blue" [disabled]="!officeForm.form.valid" (click)="save()"
+                         ><i class="fa fa-save"></i>
+                        <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

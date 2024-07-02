@@ -1,0 +1,29 @@
+<div bsModal #createOrEditModalDesignation="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="createOrEditModalDesignation" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form  #designationForm="ngForm" novalidate  autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="designation.id">{{l("EditDesignation")}}</span>
+                        <span *ngIf="!designation.id">{{l("CreateNewDesignation")}}</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="my-3">
+                        <label class="form-label" for="Designation">{{l("Designation")}} *</label>
+                        <input type="text" #Designation="ngModel" id="Designation" class="form-control" [(ngModel)]="designation.name" name="name"   minlength="0"  maxlength="50"  required/>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()"
+                        >{{l("Cancel")}}</button>
+                    <button  class="btn btn-primary blue" [disabled]="!designationForm.form.valid" (click)="save()"
+                         ><i class="fa fa-save"></i>
+                        <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
